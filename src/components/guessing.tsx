@@ -64,18 +64,23 @@ export default function Guessing() {
   );
 }
 
-export function InputDemo({ correctAnswer, onNextMovie }) {
+interface InputDemoProps {
+  correctAnswer: string;
+  onNextMovie: () => void;
+}
+
+export function InputDemo({ correctAnswer, onNextMovie }: InputDemoProps) {
   const [userAnswer, setUserAnswer] = useState('');
   const [success, setSuccess] = useState(false);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserAnswer(event.target.value);
   };
 
   const checkAnswer = () => {
     if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
       setSuccess(true);
-      onNextMovie(); // Call a function to load the next movie
+      onNextMovie();
     } else {
       setSuccess(false);
     }
