@@ -70,8 +70,8 @@ interface InputDemoProps {
 }
 
 export function InputDemo({ correctAnswer, onNextMovie }: InputDemoProps) {
-  const [userAnswer, setUserAnswer] = useState('');
-  const [success, setSuccess] = useState(false);
+  const [userAnswer, setUserAnswer] = useState<string>('');
+  const [success, setSuccess] = useState<boolean>(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserAnswer(event.target.value);
