@@ -43,14 +43,14 @@ export default function Guessing() {
         `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`
       );
       const data = await response.json();
-      const title = data.original_title;
+      const title: string = data.original_title;
       return title;
     } catch (error) {
       console.error('Error:', error);
       throw error;
     }
   }
-  const handleNextMovie = () => {
+    const handleNextMovie = () => {
     // refresh the page
     window.location.reload();
   };
