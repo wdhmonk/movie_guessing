@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Input } from "~/components/input"
+import { Input } from "components/ui/input"
 
 const movieId = Math.floor(Math.random() * 1000);
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
