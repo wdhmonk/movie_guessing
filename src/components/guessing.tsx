@@ -60,8 +60,8 @@ export default function Guessing() {
   return (
     <>
       <img src={imageUrl} alt="" />
-      <h1 className="text-white font-bold">Guess the movie</h1>
-      <h2 className="text-white opacity-10">Hint: {title}</h2>
+      <h1 className="text-white font-bold m-10">Guess the movie</h1>
+      <h2 className="text-white opacity-10 m-10">Hint: {title}</h2>
       <InputDemo correctAnswer={title} onNextMovie={handleNextMovie}/>
     </>
   );
@@ -91,15 +91,15 @@ export function InputDemo({ correctAnswer, onNextMovie }: InputDemoProps) {
 
   return (
     <>
-      <Input
+      <Input 
         type="text"
         placeholder="Type Your Answer"
         value={userAnswer}
         onChange={handleInputChange}
       />
-      {success && <div className="text-green-500">Success! Next movie is shown.</div>}
+      {success && <div className="text-green-500 p-10 m-10">Success! Next movie is shown.</div>}
       {!success && userAnswer && <div className="text-red-500">Wrong answer. Try again.</div>}
-      <Button onClick={checkAnswer}>Check Answer</Button>
+      <Button className="m-10 p-10"onClick={checkAnswer}>Check Answer</Button>
     </>
   );
 }
