@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Input } from "components/ui/input"
+import { Input } from "components/ui/input";
+import { Button } from "components/ui/button";
+
 
 const movieId = Math.floor(Math.random() * 1000);
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -58,7 +60,8 @@ export default function Guessing() {
   return (
     <>
       <img src={imageUrl} alt="" />
-      <div className="text-white text-2xl font-bold">{title}</div>
+      <h1 className="text-white font-bold">Guess the movie</h1>
+      <h2 className="text-white opacity-10">Hint: {title}</h2>
       <InputDemo correctAnswer={title} onNextMovie={handleNextMovie}/>
     </>
   );
@@ -96,7 +99,7 @@ export function InputDemo({ correctAnswer, onNextMovie }: InputDemoProps) {
       />
       {success && <div className="text-green-500">Success! Next movie is shown.</div>}
       {!success && userAnswer && <div className="text-red-500">Wrong answer. Try again.</div>}
-      <button onClick={checkAnswer}>Check Answer</button>
+      <Button onClick={checkAnswer}>Check Answer</Button>
     </>
   );
 }
