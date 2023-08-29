@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Input } from "components/ui/input";
 import { Button } from "components/ui/button";
+import { useDebounce } from "use-debounce";
 
 
 const movieId = Math.floor(Math.random() * 1000);
@@ -63,6 +64,7 @@ export default function Guessing() {
       <h1 className="text-white font-bold m-10">Guess the movie</h1>
       <h2 className="text-white opacity-10 m-10">Hint: {title}</h2>
       <InputDemo correctAnswer={title} onNextMovie={handleNextMovie}/>
+      <Button variant="destructive" className = "p-10 w-64"onClick={handleNextMovie}>I give up</Button>
     </>
   );
 }
@@ -75,13 +77,14 @@ interface InputDemoProps {
 export function InputDemo({ correctAnswer, onNextMovie }: InputDemoProps) {
   const [userAnswer, setUserAnswer] = useState<string>('');
   const [success, setSuccess] = useState<boolean>(false);
+  const [debouncedText] = useDebounce(userAnswer, 1000);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserAnswer(event.target.value);
   };
 
   const checkAnswer = () => {
-    if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+    if (debouncedText.toLowerCase() === correctAnswer.toLowerCase()) {
       setSuccess(true);
       onNextMovie();
     } else {
@@ -99,7 +102,7 @@ export function InputDemo({ correctAnswer, onNextMovie }: InputDemoProps) {
       />
       {success && <div className="text-green-500 p-10 m-10">Success! Next movie is shown.</div>}
       {!success && userAnswer && <div className="text-red-500">Wrong answer. Try again.</div>}
-      <Button className="m-10 p-10"onClick={checkAnswer}>Check Answer</Button>
+      <Button className="m-10 p-10 w-64"onClick={checkAnswer}>Check Answer</Button>
     </>
   );
 }
