@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Input } from "@/components/ui/input"
+import { Input } from "~/components/input"
 
 
 const movieId = Math.floor(Math.random() * 1000);
