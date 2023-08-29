@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Input } from "~/components/input"
 
-
 const movieId = Math.floor(Math.random() * 1000);
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -23,7 +22,7 @@ export default function Guessing() {
       .catch(error => console.error('Error:', error));
   }, []);
 
-  async function getImage() {
+  async function getImage(): Promise<string> {
     try {
       const response = await fetch(
         `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`
@@ -34,10 +33,11 @@ export default function Guessing() {
       return imageUrl;
     } catch (error) {
       console.error('Error:', error);
+      throw error;
     }
   }
 
-  async function getTitle() {
+  async function getTitle(): Promise<string> {
     try {
       const response = await fetch(
         `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`
@@ -47,6 +47,7 @@ export default function Guessing() {
       return title;
     } catch (error) {
       console.error('Error:', error);
+      throw error;
     }
   }
   const handleNextMovie = () => {
@@ -59,7 +60,6 @@ export default function Guessing() {
       <img src={imageUrl} alt="" />
       <div className="text-white text-2xl font-bold">{title}</div>
       <InputDemo correctAnswer={title} onNextMovie={handleNextMovie}/>
-
     </>
   );
 }
