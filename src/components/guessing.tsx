@@ -84,8 +84,8 @@ export function InputDemo({ correctAnswer, onNextMovie }: InputDemoProps) {
   const [success, setSuccess] = useState<boolean>(false);
   const [debouncedText] = useDebounce(userAnswer, 5000);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUserAnswer(event.target.value);
+const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  setUserAnswer(event.target.value);
   };
 
   const checkAnswer = () => {
