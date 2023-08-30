@@ -36,6 +36,7 @@ export default function Guessing() {
       return imageUrl;
     } catch (error) {
       console.error('Error:', error);
+      window.location.reload();
       throw error;
     }
   }
@@ -50,6 +51,7 @@ export default function Guessing() {
       return title;
     } catch (error) {
       console.error('Error:', error);
+      window.location.reload();
       throw error;
     }
   }
@@ -77,14 +79,14 @@ interface InputDemoProps {
 export function InputDemo({ correctAnswer, onNextMovie }: InputDemoProps) {
   const [userAnswer, setUserAnswer] = useState<string>('');
   const [success, setSuccess] = useState<boolean>(false);
-  const [debouncedText] = useDebounce(userAnswer, 1000);
+  const [debouncedText] = useDebounce(userAnswer, 5000);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserAnswer(event.target.value);
   };
 
   const checkAnswer = () => {
-    if (debouncedText.toLowerCase() === correctAnswer.toLowerCase()) {
+    if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
       setSuccess(true);
       onNextMovie();
     } else {
@@ -101,7 +103,7 @@ export function InputDemo({ correctAnswer, onNextMovie }: InputDemoProps) {
         onChange={handleInputChange}
       />
       {success && <div className="text-green-500 p-10 m-10">Success! Next movie is shown.</div>}
-      {!success && userAnswer && <div className="text-red-500">Wrong answer. Try again.</div>}
+      {!success && debouncedText && <div className="text-red-500">Wrong answer. Try again.</div>}
       <Button className="m-10 p-10 w-64"onClick={checkAnswer}>Check Answer</Button>
     </>
   );
