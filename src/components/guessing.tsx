@@ -66,8 +66,8 @@ export default function Guessing() {
   return (
     <>
       <img src={imageUrl} alt="" />
-      <h1 className="text-white font-bold m-10 text-5xl text-center">Guess the movie</h1>
-      <h2 className="text-white opacity-10 m-10">Hint: {title}</h2>
+      <h1 className="text-white font-bold m-5 text-5xl text-center">Guess the movie</h1>
+      <h2 className="text-white opacity-10 m-5">Hint: {title}</h2>
       <InputDemo correctAnswer={title} onNextMovie={handleNextMovie} />
       <Button variant="destructive" className = "p-10 w-64"onClick={handleNextMovie}>I give up</Button>
     </>
