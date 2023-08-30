@@ -56,9 +56,12 @@ export default function Guessing() {
     }
   }
     const handleNextMovie = () => {
-    // refresh the page
-    window.location.reload();
-  };
+    //wait 5 seconds before reloading the page
+    setTimeout(() => {
+      window.location.reload();
+    }, 2500);
+    }
+  
 
   return (
     <>
@@ -102,8 +105,8 @@ export function InputDemo({ correctAnswer, onNextMovie }: InputDemoProps) {
         value={userAnswer}
         onChange={handleInputChange}
       />
-      {success && <div className="text-green-500 p-10 m-10">Success! Next movie is shown.</div>}
-      {!success && debouncedText && <div className="text-red-500">Wrong answer. Try again.</div>}
+      {success && <div className="text-green-500 p-10 m-10">Thats the one! Next movie loading ....</div>}
+      {!success && debouncedText && <div className="text-red-500">Not quite that....</div>}
       <Button className="m-10 p-10 w-64"onClick={checkAnswer}>Check Answer</Button>
     </>
   );
