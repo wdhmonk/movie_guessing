@@ -69,7 +69,7 @@ export default function Guessing() {
     //wait 5 seconds before reloading the page
     setTimeout(() => {
       window.location.reload();
-    }, 2500);
+    }, 1900);
     }
   
 
@@ -92,14 +92,19 @@ interface InputDemoProps {
 export function InputDemo({ correctAnswer, onNextMovie }: InputDemoProps) {
   const [userAnswer, setUserAnswer] = useState<string>('');
   const [success, setSuccess] = useState<boolean>(false);
-  const [debouncedText] = useDebounce(userAnswer, 5000);
+  const [debouncedText] = useDebounce(userAnswer, 2500);
 
 const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   setUserAnswer(event.target.value);
   };
 
   const checkAnswer = () => {
-    if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+    const userAnswerWords = userAnswer.toLowerCase().split(' ');
+    const correctAnswerWords = correctAnswer.toLowerCase().split(' ');
+  
+    const matchingWords = userAnswerWords.filter(word => correctAnswerWords.includes(word));
+  
+    if ((matchingWords.length / correctAnswerWords.length) >= 0.45) {
       setSuccess(true);
       onNextMovie();
     } else {
@@ -121,3 +126,4 @@ const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     </>
   );
 }
+
