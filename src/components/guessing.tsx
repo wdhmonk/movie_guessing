@@ -76,7 +76,7 @@ export default function Guessing() {
   return (
     <>
       <img src={imageUrl} alt="" />
-      <h1 className="text-white font-bold m-1 text-5xl text-center">Guess the movie</h1>
+      <h1 className="text-white font-bold m-5 text-5xl text-center">Guess the movie</h1>
       <h2 className="text-white opacity-10 m-5">Hint: {title}</h2>
       <InputDemo correctAnswer={title} onNextMovie={handleNextMovie} />
       <Button variant="destructive" className = "p-10 w-64"onClick={handleNextMovie}>I give up</Button>
@@ -99,12 +99,16 @@ const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   };
 
   const checkAnswer = () => {
-    const userAnswerWords = userAnswer.toLowerCase().split(' ');
-    const correctAnswerWords = correctAnswer.toLowerCase().split(' ');
+    // Remove special characters and convert to lowercase
+    const cleanUserAnswer = userAnswer.replace(/[^a-zA-Z\s]/g, '').toLowerCase();
+    const cleanCorrectAnswer = correctAnswer.replace(/[^a-zA-Z\s]/g, '').toLowerCase();
+  
+    const userAnswerWords = cleanUserAnswer.split(' ');
+    const correctAnswerWords = cleanCorrectAnswer.split(' ');
   
     const matchingWords = userAnswerWords.filter(word => correctAnswerWords.includes(word));
   
-    if ((matchingWords.length / correctAnswerWords.length) >= 0.45) {
+    if ((matchingWords.length / correctAnswerWords.length) >= 0.2) {
       setSuccess(true);
       onNextMovie();
     } else {
@@ -120,7 +124,7 @@ const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         value={userAnswer}
         onChange={handleInputChange}
       />
-      {success && <div className="text-green-500 p-10 m-10 text-center">Thats the one! Next movie loading ....</div>}
+      {success && <div className="text-green-500 p-1 m-3 text-center">Thats the one! Next movie loading ....</div>}
       {!success && debouncedText && <div className="text-red-500">Not quite that....</div>}
       <Button className="m-10 p-10 w-64"onClick={checkAnswer}>Check Answer</Button>
     </>
