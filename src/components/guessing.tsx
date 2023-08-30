@@ -66,7 +66,7 @@ export default function Guessing() {
   return (
     <>
       <img src={imageUrl} alt="" />
-      <h1 className="text-white font-bold m-5 text-5xl text-center">Guess the movie</h1>
+      <h1 className="text-white font-bold m-1 text-5xl text-center">Guess the movie</h1>
       <h2 className="text-white opacity-10 m-5">Hint: {title}</h2>
       <InputDemo correctAnswer={title} onNextMovie={handleNextMovie} />
       <Button variant="destructive" className = "p-10 w-64"onClick={handleNextMovie}>I give up</Button>
@@ -105,7 +105,7 @@ export function InputDemo({ correctAnswer, onNextMovie }: InputDemoProps) {
         value={userAnswer}
         onChange={handleInputChange}
       />
-      {success && <div className="text-green-500 p-10 m-10">Thats the one! Next movie loading ....</div>}
+      {success && <div className="text-green-500 p-10 m-10 text-center">Thats the one! Next movie loading ....</div>}
       {!success && debouncedText && <div className="text-red-500">Not quite that....</div>}
       <Button className="m-10 p-10 w-64"onClick={checkAnswer}>Check Answer</Button>
     </>
