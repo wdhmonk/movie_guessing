@@ -2,9 +2,19 @@ import { useState, useEffect } from 'react';
 import { Input } from "components/ui/input";
 import { Button } from "components/ui/button";
 import { useDebounce } from "use-debounce";
+import { json } from 'stream/consumers';
+import { popularMovies } from './popularMovies';
+import { get } from 'http';
 
 
-const movieId = Math.floor(Math.random() * 1000);
+
+export function getRandomMovieId() {
+  const randomIndex = Math.floor(Math.random() * popularMovies.length);
+  const randomMovie = popularMovies[randomIndex];
+  return randomMovie;
+}
+
+const movieId = getRandomMovieId();
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
 export default function Guessing() {
