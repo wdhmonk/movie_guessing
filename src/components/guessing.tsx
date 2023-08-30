@@ -128,7 +128,7 @@ const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       />
       {success && <div className="text-green-500 p-1 m-3 text-center">Thats the one! Next movie loading ....</div>}
       {!success && debouncedText && <div className="text-red-500">Not quite that....</div>}
-      <Button className="m-10 p-10 w-64"onClick={checkAnswer}>Check Answer</Button>
+      <Button className="m-10 p-10 w-64"onClick={checkAnswer}>Check You Answer</Button>
     </>
   );
 }
