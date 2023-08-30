@@ -32,7 +32,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content="Movie Guesser" />
         <meta property="og:description" content="This page is just a simple app created using IMBD API for puling random movie backdrops and guessing the movie name" />
-        <meta property="og:image"content="public/red-seat-cinema-theatre.jpg"
+        <meta property="og:image"content="/red-seat-cinema-theatre.jpg"
   />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
